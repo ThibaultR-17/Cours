@@ -38,4 +38,19 @@ pour le resizeOption (je n'ai pas tout lu, il y a mieux à faire avec les option
 #  ATTENTION 
 pour la branch,  var options = new ParallelOptions { MaxDegreeOfParallelism = Environment.ProcessorCount }; par défaut dans le code
 
- 
+ Vitesse d'execution de la derniere version : 
+
+ [START] Processing 5 images sequentially...
+[SUCCESS] Completed: nature_mountain
+[SUCCESS] Completed: ocean_sunset
+[SUCCESS] Completed: forest_path
+[SUCCESS] Completed: city_skyline
+[SUCCESS] Completed: desert_dunes
+[FINISHED] All tasks completed.
+single execution (async download) : 6339ms
+[DONE] nature_mountain
+[DONE] city_skyline
+[DONE] forest_path
+[DONE] desert_dunes
+[DONE] ocean_sunset
+parrallelime execution (async download) : 1501ms
