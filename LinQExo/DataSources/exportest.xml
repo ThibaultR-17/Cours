@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Item>
+    <id>1</id>
+    <type>Hardware</type>
+    <info>
+      <label>Clavier Mécanique</label>
+      <specs>
+        <switch>Cherry MX Red</switch>
+        <layout>AZERTY</layout>
+      </specs>
+    </info>
+    <stock>15</stock>
+    <prix>89.99</prix>
+  </Item>
+  <Item>
+    <id>2</id>
+    <type>Hardware</type>
+    <info>
+      <label>Souris Gaming</label>
+      <specs>
+        <dpi>16000</dpi>
+        <poids>80g</poids>
+      </specs>
+    </info>
+    <stock>42</stock>
+    <prix>45.50</prix>
+  </Item>
+  <Item>
+    <id>3</id>
+    <type>Software</type>
+    <info>
+      <label>Licence IDE</label>
+      <version>2024.1</version>
+    </info>
+    <stock>100</stock>
+    <prix>199.00</prix>
+  </Item>
+  <Item>
+    <id>4</id>
+    <type>Hardware</type>
+    <info>
+      <label>Écran 27 pouces</label>
+      <specs>
+        <refresh>144Hz</refresh>
+        <panel>IPS</panel>
+      </specs>
+    </info>
+    <stock>8</stock>
+    <prix>299.99</prix>
+  </Item>
+  <Item>
+    <id>5</id>
+    <type>Accessoire</type>
+    <info>
+      <label>Tapis de souris</label>
+      <taille>XL</taille>
+    </info>
+    <stock>50</stock>
+    <prix>15.00</prix>
+  </Item>
+  <Item>
+    <id>6</id>
+    <type>Hardware</type>
+    <info>
+      <label>Casque Audio</label>
+      <specs>
+        <type>Filaire</type>
+        <mic>true</mic>
+      </specs>
+    </info>
+    <stock>12</stock>
+    <prix>75.00</prix>
+  </Item>
+  <Item>
+    <id>7</id>
+    <type>Hardware</type>
+    <info>
+      <label>GPU RTX 4070</label>
+      <specs>
+        <vram>12GB</vram>
+        <brand>Asus</brand>
+      </specs>
+    </info>
+    <stock>3</stock>
+    <prix>649.90</prix>
+  </Item>
+  <Item>
+    <id>8</id>
+    <type>Software</type>
+    <info>
+      <label>OS Pro</label>
+      <version>11</version>
+    </info>
+    <stock>25</stock>
+    <prix>120.00</prix>
+  </Item>
+  <Item>
+    <id>9</id>
+    <type>Hardware</type>
+    <info>
+      <label>RAM 32GB</label>
+      <specs>
+        <speed>6000MHz</speed>
+        <type>DDR5</type>
+      </specs>
+    </info>
+    <stock>20</stock>
+    <prix>115.00</prix>
+  </Item>
+  <Item>
+    <id>10</id>
+    <type>Accessoire</type>
+    <info>
+      <label>Câble HDMI 2.1</label>
+      <longueur>2m</longueur>
+    </info>
+    <stock>80</stock>
+    <prix>12.50</prix>
+  </Item>
+</Root>

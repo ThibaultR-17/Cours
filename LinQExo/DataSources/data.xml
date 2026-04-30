@@ -1,0 +1,27 @@
+﻿<MusicLibrary>
+	<Artist>
+		<Name>Phoenix</Name>
+		<Discography>
+			<Album>
+				<Title>Wolfgang Amadeus Phoenix</Title>
+				<Year>2009</Year>
+				<Tracks>
+					<Track>Lisztomania</Track>
+					<Track>1901</Track>
+				</Tracks>
+			</Album>
+		</Discography>
+	</Artist>
+	<Artist>
+		<Name>Kavinsky</Name>
+		<Discography>
+			<Album>
+				<Title>OutRun</Title>
+				<Year>2013</Year>
+				<Tracks>
+					<Track>Nightcall</Track>
+				</Tracks>
+			</Album>
+		</Discography>
+	</Artist>
+</MusicLibrary>

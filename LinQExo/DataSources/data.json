@@ -1,0 +1,120 @@
+[
+  {
+    "id": 1,
+    "type": "Hardware",
+    "info": {
+      "label": "Clavier Mécanique",
+      "specs": {
+        "switch": "Cherry MX Red",
+        "layout": "AZERTY"
+      }
+    },
+    "stock": 15,
+    "prix": 89.99
+  },
+  {
+    "id": 2,
+    "type": "Hardware",
+    "info": {
+      "label": "Souris Gaming",
+      "specs": {
+        "dpi": 16000,
+        "poids": "80g"
+      }
+    },
+    "stock": 42,
+    "prix": 45.50
+  },
+  {
+    "id": 3,
+    "type": "Software",
+    "info": {
+      "label": "Licence IDE",
+      "version": "2024.1"
+    },
+    "stock": 100,
+    "prix": 199.00
+  },
+  {
+    "id": 4,
+    "type": "Hardware",
+    "info": {
+      "label": "Écran 27 pouces",
+      "specs": {
+        "refresh": "144Hz",
+        "panel": "IPS"
+      }
+    },
+    "stock": 8,
+    "prix": 299.99
+  },
+  {
+    "id": 5,
+    "type": "Accessoire",
+    "info": {
+      "label": "Tapis de souris",
+      "taille": "XL"
+    },
+    "stock": 50,
+    "prix": 15.00
+  },
+  {
+    "id": 6,
+    "type": "Hardware",
+    "info": {
+      "label": "Casque Audio",
+      "specs": {
+        "type": "Filaire",
+        "mic": true
+      }
+    },
+    "stock": 12,
+    "prix": 75.00
+  },
+  {
+    "id": 7,
+    "type": "Hardware",
+    "info": {
+      "label": "GPU RTX 4070",
+      "specs": {
+        "vram": "12GB",
+        "brand": "Asus"
+      }
+    },
+    "stock": 3,
+    "prix": 649.90
+  },
+  {
+    "id": 8,
+    "type": "Software",
+    "info": {
+      "label": "OS Pro",
+      "version": "11"
+    },
+    "stock": 25,
+    "prix": 120.00
+  },
+  {
+    "id": 9,
+    "type": "Hardware",
+    "info": {
+      "label": "RAM 32GB",
+      "specs": {
+        "speed": "6000MHz",
+        "type": "DDR5"
+      }
+    },
+    "stock": 20,
+    "prix": 115.00
+  },
+  {
+    "id": 10,
+    "type": "Accessoire",
+    "info": {
+      "label": "Câble HDMI 2.1",
+      "longueur": "2m"
+    },
+    "stock": 80,
+    "prix": 12.50
+  }
+]

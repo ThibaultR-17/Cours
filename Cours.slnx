@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="../Calculatrice/Calculatrice.csproj" />
+  <Project Path="../LinQ/DataSources/DataSources.csproj" />
+  <Project Path="../LinQ/LinqExercicePresentationNet8/LinqExercicePresentationNet8.csproj" />
+  <Project Path="../POOProject/POOProject.csproj" />
+  <Project Path="DegradationImage/DegradationImage.csproj" Id="10a9c74f-6f91-414a-86db-94a8948c7266" />
+  <Project Path="LinQExo/LinQExo.csproj" />
+  <Project Path="PerformenceTest/PerformenceTest.csproj" Id="8082c216-6e3a-4cbe-a713-3575d5bb912a" />
+</Solution>
