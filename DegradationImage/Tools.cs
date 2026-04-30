@@ -1,109 +1,61 @@
 ﻿using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Formats.Webp;
 using SixLabors.ImageSharp.Processing;
-using System.Net.Http.Json;
 using System.Text.Json.Nodes;
 
-public record ImageData(string Name, Image Image);
+namespace DegradationImage;
 
-namespace DegradationImage
+
+internal class Tools
 {
-    internal class Tools
+    private static readonly HttpClient _httpClient = new();
+
+    public static async Task ProcessJSONImages(string filePath)
     {
-        private static readonly HttpClient _httpClient = new HttpClient();
+        string jsonContent = await File.ReadAllTextAsync(filePath);
+        var root = JsonNode.Parse(jsonContent)?.AsObject();
+        if (root == null) return;
 
-        public static async Task ProcessJSONImages(string filePath)
+        string outputDir = Path.GetDirectoryName(Path.GetFullPath(filePath));
+        Console.WriteLine($"[START] Processing");
+
+        foreach (var entry in root)
         {
-            Console.WriteLine($"[START] Reading JSON from: {filePath}");
+            string name = entry.Key;
+            string? url = entry.Value?["url"].ToString();
+            if (string.IsNullOrEmpty(url)) continue;
 
-            string? jsonDirectory = Path.GetDirectoryName(Path.GetFullPath(filePath));
-            if (jsonDirectory == null) return;
-
-            string jsonContent = await File.ReadAllTextAsync(filePath);
-            var root = JsonNode.Parse(jsonContent)?.AsObject();
-            if (root == null)
+            try
             {
-                Console.WriteLine("[ERROR] JSON content is null or invalid.");
-                return;
+                using var stream = await _httpClient.GetStreamAsync(url);
+                using var image = await Image.LoadAsync(stream);
+
+                string targetFolder = Path.Combine(outputDir, name);
+                Directory.CreateDirectory(targetFolder);
+
+                await SaveVersion(image, targetFolder, name, "1080", image.Width, image.Height);
+                await SaveVersion(image, targetFolder, name, "720", 1280, 720);
+                await SaveVersion(image, targetFolder, name, "480", 854, 480);
+
+                Console.WriteLine($"[SUCCESS] {name}");
             }
-
-            Console.WriteLine($"[INFO] Found {root.Count} entries. Starting downloads...");
-
-            var downloadTasks = root.Select(async values =>
+            catch (Exception ex)
             {
-                string name = values.Key;
-                string? url = values.Value?["url"]?.ToString();
-                if (string.IsNullOrEmpty(url)) return null;
-
-                try
-                {
-                    Console.WriteLine($"[DOWNLOAD] Starting: {name}");
-                    byte[] imageBytes = await _httpClient.GetByteArrayAsync(url);
-                    var image = Image.Load(new MemoryStream(imageBytes));
-                    Console.WriteLine($"[DOWNLOAD] Success: {name} ({image.Width}x{image.Height})");
-                    return new ImageData(name, image);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"[DOWNLOAD ERROR] {name}: {ex.Message}");
-                    return null;
-                }
-            });
-
-            var results = await Task.WhenAll(downloadTasks);
-            var toDegrade = results.Where(r => r != null).Cast<ImageData>().ToList();
-
-            Console.WriteLine($"[INFO] Downloaded {toDegrade.Count} images. starting degradation...");
-
-            var tasks = toDegrade.Select(async item =>
-            {
-                try
-                {
-                    string baseName = item.Name;
-                    string targetFolder = Path.Combine(jsonDirectory, baseName);
-                    Directory.CreateDirectory(targetFolder);
-
-                    Console.WriteLine($"[PROCESS] Processing: {baseName} -> {targetFolder}");
-
-                    string path1080 = Path.Combine(targetFolder, $"{baseName}_1080.webp");
-                    Task saveOriginal = item.Image.SaveAsWebpAsync(path1080);
-                    Console.WriteLine($"[SAVE] Original queued: {baseName}_1080.webp");
-
-                    var resolutions = new[]
-                    {
-                        new { Label = "720", Width = 1280, Height = 720 },
-                        new { Label = "480", Width = 854, Height = 480 }
-                    };
-
-                    foreach (var res in resolutions)
-                    {
-                        using (Image clone = item.Image.Clone(ctx => ctx.Resize(res.Width, res.Height)))
-                        {
-                            string pathRes = Path.Combine(targetFolder, $"{baseName}_{res.Label}.webp");
-                            Console.WriteLine($"[RESIZE] {baseName} -> {res.Label}p...");
-                            await clone.SaveAsWebpAsync(pathRes);
-                            Console.WriteLine($"[SAVE] Done: {baseName}_{res.Label}.webp");
-                        }
-                    }
-
-                    await saveOriginal;
-                    Console.WriteLine($"[COMPLETE] All versions saved for: {baseName}");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"[PROCESS ERROR] Failed to process {item.Name}: {ex.Message}");
-                }
-                finally
-                {
-                    item.Image.Dispose();
-                }
-            });
-
-            await Task.WhenAll(tasks);
-            Console.WriteLine("\n[FINISHED] All images processed successfully.");
+                Console.WriteLine($"[ERROR] {name}: {ex.Message}");
+            }
         }
 
+        Console.WriteLine("[FINISHED] ");
     }
 
+    private static async Task SaveVersion(Image img, string folder, string name, string label, int w, int h)
+    {
+        using var clone = img.Clone(x => x.Resize(new ResizeOptions
+        {
+            Size = new Size(w, h),
+            Mode = ResizeMode.Max
+        }));
 
+        string path = Path.Combine(folder, $"{name}_{label}.webp");
+        await clone.SaveAsWebpAsync(path);
+    }
 }
