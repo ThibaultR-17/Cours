@@ -3,7 +3,9 @@
   <Project Path="../LinQ/DataSources/DataSources.csproj" />
   <Project Path="../LinQ/LinqExercicePresentationNet8/LinqExercicePresentationNet8.csproj" />
   <Project Path="../POOProject/POOProject.csproj" />
+  <Project Path="CoursAPI/CoursAPI.csproj" Id="c989572c-2a37-4be3-b6e8-70150be3c0a1" />
   <Project Path="DegradationImage/DegradationImage.csproj" Id="10a9c74f-6f91-414a-86db-94a8948c7266" />
   <Project Path="LinQExo/LinQExo.csproj" />
+  <Project Path="MonPortFollioM12526/MonPortFollioM12526.csproj" Id="c45ab15a-4c8f-4144-b796-8e877c720c1f" />
   <Project Path="PerformenceTest/PerformenceTest.csproj" Id="8082c216-6e3a-4cbe-a713-3575d5bb912a" />
 </Solution>
